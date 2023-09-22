@@ -1,0 +1,5 @@
+pyautogui
+flatbuffers
+protobuf
+easyocr
+pyyaml
