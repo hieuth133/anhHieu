@@ -1,7 +1,4 @@
-
-
 NumToGet: 10
 ScreenPart: [160, 160, 160, 160]
 FirstClickXY: [100,100]
-
-
+SecondClickXY: [200,200]

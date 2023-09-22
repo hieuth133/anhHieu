@@ -1,5 +1,6 @@
 import os
 import logging
+import csv
 
 from datetime import datetime
 
@@ -10,26 +11,18 @@ class TextLog:
         # Create folder if not existed
         self.logFolderPath = 'log'
         os.makedirs('log', exist_ok=True)
-        self.logFile = open(self.createLogFile(), 'a')
+        self.logFile = open(self.createLogFile(), 'w')
+        self.writer = csv.writer(self.logFile)
     
     def createLogFile(self):
         now = datetime.now()
-        date_time = now.strftime
-        return os.path.join(self.logFolderPath, str(datetime.now()))
+        date_time = now.strftime("%d%m%Y - %H%M%S")
+        return os.path.join(self.logFolderPath, date_time + '.csv')
     
     def appendToLogFile(self, line):
-        self.logFile.write(line)
+        self.writer.writerow(line)
     
     def close(self):
         self.logFile.close()
 
 
-if __name__ == "__main__":
-    textlog = TextLog()
-    bbox = [[0], [1], [2], [3]]
-    text = '12'
-    score = 0.123214
-    
-    r = (bbox, text, score)
-    textlog.appendToLogFile(r)
-    textlog.close()
